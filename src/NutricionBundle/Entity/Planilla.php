@@ -1,0 +1,1056 @@
+<?php
+
+namespace NutricionBundle\Entity;
+
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Planilla
+ *
+ * @ORM\Table(name="planilla")
+ * @ORM\Entity(repositoryClass="NutricionBundle\Repository\PlanillaRepository")
+ */
+class Planilla
+{
+
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Bancos", inversedBy="planilla")
+     * @ORM\JoinColumn(name="banco", referencedColumnName="id")
+     */
+    protected $banco;
+
+/**
+
+     * @ORM\OneToMany(targetEntity="Volumenes", mappedBy="planilla", 
+     cascade={"remove","persist"}, orphanRemoval=true)
+     */
+    protected $volumenes;
+ 
+    public function __construct()
+    {
+        $this->volumenes = new ArrayCollection();
+    }
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cedula", type="string", length=11)
+     */
+    private $cedula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apellido", type="string", length=255)
+     */
+    private $apellido;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="nacimiento", type="date")
+     */
+    private $nacimiento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profesion", type="string", length=255)
+     */
+    private $profesion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ocupacion", type="string", length=255)
+     */
+    private $ocupacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nacionalidad", type="string", length=1)
+     */
+    private $nacionalidad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="text")
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ciudad", type="string", length=60)
+     */
+    private $ciudad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=60)
+     */
+    private $estado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pais", type="string", length=60)
+     */
+    private $pais;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cedulared", type="string", length=11)
+     */
+    private $cedulared;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombrered", type="string", length=60)
+     */
+    private $nombrered;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apellidored", type="string", length=60)
+     */
+    private $apellidored;
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="bancored", type="integer", length=60, nullable=true)
+     */
+    private $bancored;
+     
+        /**
+     * @var \Date
+     *
+     * @ORM\Column(name="fechared", type="date")
+     */
+    private $fechared;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="nreferencia", type="string", length=20, nullable=true)
+     */
+    private $nreferencia;
+     
+     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="clave", type="string", length=100)
+     */
+    private $clave;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=60)
+     */
+    private $username;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tipocuenta", type="integer", length=60, nullable=true)
+     */
+    private $tipocuenta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ncuenta", type="string", length=20, nullable=true)
+     */
+    private $ncuenta;
+
+          /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="blob", nullable=true)
+     */
+    private $image;
+
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="tamano", type="string", length=15, nullable=true)
+     */
+    private $tamano;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formato", type="string", length=10, nullable=true)
+     */
+    private $formato;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipouser", type="string", length=1, nullable=true)
+     */
+    private $tipouser;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rif", type="string", length=30, nullable=true)
+     */
+    private $rif;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="text", length=20, nullable=true)
+     */
+    private $telefono;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="correo", type="string", length=60, nullable=true)
+     */
+    private $correo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="monto", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $monto;
+
+
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set cedula
+     *
+     * @param string $cedula
+     *
+     * @return Planilla
+     */
+    public function setCedula($cedula)
+    {
+        $this->cedula = $cedula;
+
+        return $this;
+    }
+
+    /**
+     * Get cedula
+     *
+     * @return string
+     */
+    public function getCedula()
+    {
+        return $this->cedula;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Planilla
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set apellido
+     *
+     * @param string $apellido
+     *
+     * @return Planilla
+     */
+    public function setApellido($apellido)
+    {
+        $this->apellido = $apellido;
+
+        return $this;
+    }
+
+    /**
+     * Get apellido
+     *
+     * @return string
+     */
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    /**
+     * Set nacimiento
+     *
+     * @param \DateTime $nacimiento
+     *
+     * @return Planilla
+     */
+    public function setNacimiento($nacimiento)
+    {
+        $this->nacimiento = $nacimiento;
+
+        return $this;
+    }
+
+    /**
+     * Get nacimiento
+     *
+     * @return \DateTime
+     */
+    public function getNacimiento()
+    {
+        return $this->nacimiento;
+    }
+
+    /**
+     * Set profesion
+     *
+     * @param string $profesion
+     *
+     * @return Planilla
+     */
+    public function setProfesion($profesion)
+    {
+        $this->profesion = $profesion;
+
+        return $this;
+    }
+
+    /**
+     * Get profesion
+     *
+     * @return string
+     */
+    public function getProfesion()
+    {
+        return $this->profesion;
+    }
+
+    /**
+     * Set ocupacion
+     *
+     * @param string $ocupacion
+     *
+     * @return Planilla
+     */
+    public function setOcupacion($ocupacion)
+    {
+        $this->ocupacion = $ocupacion;
+
+        return $this;
+    }
+
+    /**
+     * Get ocupacion
+     *
+     * @return string
+     */
+    public function getOcupacion()
+    {
+        return $this->ocupacion;
+    }
+
+    /**
+     * Set nacionalidad
+     *
+     * @param string $nacionalidad
+     *
+     * @return Planilla
+     */
+    public function setNacionalidad($nacionalidad)
+    {
+        $this->nacionalidad = $nacionalidad;
+
+        return $this;
+    }
+
+    /**
+     * Get nacionalidad
+     *
+     * @return string
+     */
+    public function getNacionalidad()
+    {
+        return $this->nacionalidad;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param string $direccion
+     *
+     * @return Planilla
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return string
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * Set ciudad
+     *
+     * @param string $ciudad
+     *
+     * @return Planilla
+     */
+    public function setCiudad($ciudad)
+    {
+        $this->ciudad = $ciudad;
+
+        return $this;
+    }
+
+    /**
+     * Get ciudad
+     *
+     * @return string
+     */
+    public function getCiudad()
+    {
+        return $this->ciudad;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     *
+     * @return Planilla
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set pais
+     *
+     * @param string $pais
+     *
+     * @return Planilla
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
+
+    /**
+     * Get pais
+     *
+     * @return string
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * Set cedulared
+     *
+     * @param string $cedulared
+     *
+     * @return Planilla
+     */
+    public function setCedulared($cedulared)
+    {
+        $this->cedulared = $cedulared;
+
+        return $this;
+    }
+
+    /**
+     * Get cedulared
+     *
+     * @return string
+     */
+    public function getCedulared()
+    {
+        return $this->cedulared;
+    }
+
+    /**
+     * Set nombrered
+     *
+     * @param string $nombrered
+     *
+     * @return Planilla
+     */
+    public function setNombrered($nombrered)
+    {
+        $this->nombrered = $nombrered;
+
+        return $this;
+    }
+
+    /**
+     * Get nombrered
+     *
+     * @return string
+     */
+    public function getNombrered()
+    {
+        return $this->nombrered;
+    }
+
+    /**
+     * Set apellidored
+     *
+     * @param string $apellidored
+     *
+     * @return Planilla
+     */
+    public function setApellidored($apellidored)
+    {
+        $this->apellidored = $apellidored;
+
+        return $this;
+    }
+
+    /**
+     * Get apellidored
+     *
+     * @return string
+     */
+    public function getApellidored()
+    {
+        return $this->apellidored;
+    }
+      /**
+     * Set bancored
+     *
+     * @param string $bancored
+     *
+     * @return Planilla
+     */
+    public function setBancored($bancored)
+    {
+        $this->bancored = $bancored;
+
+        return $this;
+    }
+
+    /**
+     * Get bancored
+     *
+     * @return string
+     */
+    public function getBancored()
+    {
+        return $this->bancored;
+    }
+
+    /**
+     * Set fechared
+     *
+     * @param \DateTime $fechared
+     *
+     * @return Planilla
+     */
+    public function setFechared($fechared)
+    {
+        $this->fechared = $fechared;
+
+        return $this;
+    }
+
+    /**
+     * Get fechared
+     *
+     * @return \DateTime
+     */
+    public function getFechared()
+    {
+        return $this->fechared;
+    }
+
+     /**
+     * Set nreferencia
+     *
+     * @param string $nreferencia
+     *
+     * @return Planilla
+     */
+    public function setNreferencia($nreferencia)
+    {
+        $this->nreferencia = $nreferencia;
+
+        return $this;
+    }
+
+    /**
+     * Get nreferencia
+     *
+     * @return string
+     */
+    public function getNreferencia()
+    {
+        return $this->nreferencia;
+    }
+    
+    /**
+     * Set clave
+     *
+     * @param string $clave
+     *
+     * @return Planilla
+     */
+    public function setClave($clave)
+    {
+        $this->clave = $clave;
+
+        return $this;
+    }
+
+    /**
+     * Get clave
+     *
+     * @return string
+     */
+    public function getClave()
+    {
+        return $this->clave;
+    }
+
+    /**
+     * Add volumene
+     *
+     * @param \NutricionBundle\Entity\Volumenes $volumene
+     *
+     * @return Planilla
+     */
+    public function addVolumene(\NutricionBundle\Entity\Volumenes $volumene)
+    {
+        $this->volumenes[] = $volumene;
+
+        return $this;
+    }
+
+    /**
+     * Remove volumene
+     *
+     * @param \NutricionBundle\Entity\Volumenes $volumene
+     */
+    public function removeVolumene(\NutricionBundle\Entity\Volumenes $volumene)
+    {
+        $this->volumenes->removeElement($volumene);
+    }
+
+    /**
+     * Get volumenes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVolumenes()
+    {
+        return $this->volumenes;
+    }
+
+        
+
+     
+
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return Planilla
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+  
+     /**
+     * Set tipocuenta
+     *
+     * @param string $tipocuenta
+     *
+     * @return Planilla
+     */
+    public function setTipocuenta($tipocuenta)
+    {
+        $this->tipocuenta = $tipocuenta;
+
+        return $this;
+    }
+
+    /**
+     * Get tipocuenta
+     *
+     * @return string
+     */
+    public function getTipocuenta()
+    {
+        return $this->tipocuenta;
+    }
+
+    /**
+     * Set ncuenta
+     *
+     * @param string $ncuenta
+     *
+     * @return Planilla
+     */
+    public function setNcuenta($ncuenta)
+    {
+        $this->ncuenta = $ncuenta;
+
+        return $this;
+    }
+
+    /**
+     * Get ncuenta
+     *
+     * @return string
+     */
+    public function getNcuenta()
+    {
+        return $this->ncuenta;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Planilla
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set tamano
+     *
+     * @param string $tamano
+     *
+     * @return Planilla
+     */
+    public function setTamano($tamano)
+    {
+        $this->tamano = $tamano;
+
+        return $this;
+    }
+
+    /**
+     * Get tamano
+     *
+     * @return string
+     */
+    public function getTamano()
+    {
+        return $this->tamano;
+    }
+
+    /**
+     * Set formato
+     *
+     * @param string $formato
+     *
+     * @return Planilla
+     */
+    public function setFormato($formato)
+    {
+        $this->formato = $formato;
+
+        return $this;
+    }
+
+    /**
+     * Get formato
+     *
+     * @return string
+     */
+    public function getFormato()
+    {
+        return $this->formato;
+    }
+
+    /**
+     * Set tipouser
+     *
+     * @param string $tipouser
+     *
+     * @return Planilla
+     */
+    public function setTipouser($tipouser)
+    {
+        $this->tipouser = $tipouser;
+
+        return $this;
+    }
+
+    /**
+     * Get tipouser
+     *
+     * @return string
+     */
+    public function getTipouser()
+    {
+        return $this->tipouser;
+    }
+    
+    
+    
+    /**
+     * Set telefono
+     *
+     * @param string $telefono
+     *
+     * @return Planilla
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get telefono
+     *
+     * @return string
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+    
+    
+    /**
+     * Set rif
+     *
+     * @param string $rif
+     *
+     * @return Planilla
+     */
+    public function setRif($rif)
+    {
+        $this->rif = $rif;
+
+        return $this;
+    }
+
+    /**
+     * Get rif
+     *
+     * @return string
+     */
+    public function getRif()
+    {
+        return $this->rif;
+    }
+
+    /**
+     * Set correo
+     *
+     * @param string $correo
+     *
+     * @return Planilla
+     */
+    public function setCorreo($correo)
+    {
+        $this->correo = $correo;
+
+        return $this;
+    }
+
+    /**
+     * Get correo
+     *
+     * @return string
+     */
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    /**
+     * Set monto
+     *
+     * @param string $monto
+     *
+     * @return Planilla
+     */
+    public function setMonto($monto)
+    {
+        $this->monto = $monto;
+
+        return $this;
+    }
+
+    /**
+     * Get monto
+     *
+     * @return string
+     */
+    public function getMonto()
+    {
+        return $this->monto;
+    }
+
+
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+
+
+public function __toString()
+   {
+      return strval($this->getId());
+   }
+
+
+    /**
+     * Set banco
+     *
+     * @param \NutricionBundle\Entity\Bancos $banco
+     *
+     * @return Planilla
+     */
+    public function setBancos(\NutricionBundle\Entity\Bancos $banco = null)
+    {
+        $this->banco = $banco;
+
+        return $this;
+    }
+
+    /**
+     * Get banco
+     *
+     * @return \NutricionBundle\Entity\Bancos
+     */
+    public function getBancos()
+    {
+        return $this->banco;
+    }
+}

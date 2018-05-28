@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Nutricell</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('vendor2/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{{ asset('vendor2/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{{ asset('vendor2/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/creative.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/creative.css')}}" rel="stylesheet">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+
+  </head>
+<style>
+    #services .mt-5, #services .my-5{
+        margin-top:-2rem !important;
+    }
+    
+    #services .section-heading,  #services  .mb-3, #plan .mb-4{
+        color:white !important;
+    }
+    #services .text-muted{ 
+        color:white !important;
+    }
+</style>
+
+  <body id="page-top">
+
+
+  
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{ asset('img/logo.png') }}" width="200px"></a>
+
+        
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#myModal" href="#">Afiliación</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Empresa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#plan">Negocio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ path('login') }}">Mi Oficina</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#oficina">Direccion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contacto">Contacto</a>
+            </li>
+          </ul>
+        </div>
+
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{ asset('img/sic.png') }}" width="200px"></a>
+      </div>
+    </nav>
+
+  
+  {% block body%}
+
+  {% endblock %}
+
+
+
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Planilla de Afiliacion</h4>
+
+        <h5 class="modal-title" style="margin-left:10px">Fecha: {{ "now"|date("d/m/Y") }}</h5>
+        <hr>
+      </div>
+      <div class="modal-body">
+      <h1>Datos del Solicitante</h1>
+      <hr>
+        <form id="loginForm" method="post" data-toggle="validator">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">Nombres</label>
+      <input type="text" class="form-control" id="nombre" placeholder="Nombres" name="nombres">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputPassword4">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputPassword4">Cedula</label>
+      <input type="number" class="form-control" id="cedula" placeholder="Cedula">
+    </div>
+
+     <div class="form-group col-md-4">
+      <label for="inputPassword4">Fecha de Nacimiento</label>
+      <input type="date" class="form-control" id="nacimiento" placeholder="cedula">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputPassword4">Profesion</label>
+      <input type="text" class="form-control" id="profesion" placeholder="Profesion">
+    </div>
+
+     <div class="form-group col-md-4">
+      <label for="inputPassword4">Ocupacion</label>
+      <input type="text" class="form-control" id="ocupacion" placeholder="Ocupacion">
+    </div>
+
+     <div class="form-group col-md-4">
+      <label for="inputPassword4">Nacionalidad</label>
+      <select id="nacionalidad" class="form-control">
+          <option value="V">Venezolano</option>
+          <option value="E">Extranjero</option>
+      </select>
+    </div>
+
+     <div class="form-group col-md-4">
+      <label for="inputPassword4">Clave</label>
+      <input type="password" class="form-control clave" id="clave" placeholder="Clave" >
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputPassword4">Re-Clave</label>
+      <input type="password" class="form-control reclave" id="reclave" placeholder="Repetir Clave" >
+    </div>
+
+
+<div class="form-group col-md-4">
+      <label for="inputPassword4">Telefono</label>
+      <input type="text" class="form-control telefono" id="telefono" placeholder="Telefono" >
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputPassword4">Rif</label>
+      <input type="text" class="form-control rif" id="rif" placeholder="Rif" >
+    </div>
+
+     <div class="form-group col-md-4">
+      <label for="inputPassword4">Username</label>
+      <input type="text" class="form-control username" id="username" placeholder="Username" >
+    </div>
+
+
+<div class="form-group col-md-4">
+      <label for="inputPassword4">Correo Electronico</label>
+      <input type="email" class="form-control username" id="correo" placeholder="Correo Electronico" >
+    </div>
+
+  </div>
+
+
+  <div class="form-group">
+    <label for="inputAddress">Direccion</label>
+    <input type="text" class="form-control" id="direccion" placeholder="1234 Main St">
+  </div>
+  
+  <div class="form-row">
+
+<div class="form-group col-md-4">
+      <label for="inputCity">Banco</label>
+      <select class="form-control" id="bancos">
+
+      {% for gerencia in bancos %}
+    <option value="{{ gerencia.id }}">{{ gerencia.nombres}}</option>
+{% endfor %}
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">Tipo</label>
+         <select class="form-control" id="tipocuenta">
+          <option value="C">Corriente</option>
+          <option value="A">Ahorro</option>
+       </select>
+
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputZip">Numero de Cuenta</label>
+      <input type="text" class="form-control" id="ncuenta">
+    </div>
+
+
+
+    <div class="form-group col-md-4">
+      <label for="inputCity">Ciudad</label>
+      <input type="text" class="form-control" id="ciudad">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">Estado</label>
+         <input type="text" class="form-control" id="estado">
+
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputZip">Pais</label>
+      <input type="text" class="form-control" id="pais">
+    </div>
+  </div>
+
+  <h1>Datos del Auspiciador</h1>
+      <hr>
+
+  <div class="form-row">
+
+  <div class="form-group col-md-4">
+      <label for="inputZip">Cedula</label>
+      <input type="text" class="form-control" id="cedulared">       
+<img id="fotocedulared" src="http://www.lacosox.org/sites/default/files/cargando.gif">
+
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputCity">Nombre</label>
+      <input type="text" class="form-control" id="nombrered" readonly="readonly">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputCity">Apellido</label>
+      <input type="text" class="form-control" id="apellidored" readonly="readonly">
+    </div>
+    
+    <!-- <div class="g-recaptcha" data-sitekey="6LfuJS4UAAAAANG5gp5vxzB6Oh36-30XwETojWdu"></div> -->
+
+  </div>
+
+
+   <h4>Datos de la Transferencia</h4>
+      <hr>
+
+
+    <div class="form-row">
+
+  <div class="form-group col-md-4">
+      <label for="inputZip">Banco</label>
+      <select class="form-control" name="bancotransferencia" id="bancotransferencia">
+{% for gerencia in bancos %}
+    <option value="{{ gerencia.id }}">{{ gerencia.nombres}}</option>
+{% endfor %}
+
+      </select>
+
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputCity">Fecha</label>
+      <input type="date" class="form-control" id="fechatransferencia" name="fechatransferencia">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputCity">Numero de Ref</label>
+      <input type="number" class="form-control" id="numref" name="numref">
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputCity">Monto</label>
+      <input type="number" class="form-control" id="montotrans" name="montotrans">
+    </div>
+    
+    <!-- <div class="g-recaptcha" data-sitekey="6LfuJS4UAAAAANG5gp5vxzB6Oh36-30XwETojWdu"></div> -->
+
+  </div>
+
+ <div id="fotocargando" style="width:100%;text-align: center;">
+<img src="http://www.lacosox.org/sites/default/files/cargando.gif">
+</div>
+  <button type="button" class="btn btn-primary" id="registrar">Registrar</button>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('vendor2/jquery/jquery.min.js')}} "></script>
+    <script src="{{ asset('vendor2/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{ asset('vendor2/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('vendor2/scrollreveal/scrollreveal.min.js')}}"></script>
+    <script src="{{ asset('vendor2/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{{ asset('js/creative.min.js')}}"></script>
+
+
+   <!--<link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet"></link>-->
+
+    <script type="text/javascript">
+
+
+
+
+
+$(document).ready(function(){
+  $('#registrar').prop('disabled',true);
+  $('#fotocargando').hide();
+  $('#fotocedulared').hide();
+  $( "#cedula" ).keypress(function(){
+document.getElementById('username').value=document.getElementById('cedula').value;
+document.getElementById('username').disabled=true;
+});
+
+});
+
+
+    $( "#registrar" ).click(function() {
+
+          var verificacion = "";
+
+         if($( ".clave" ).val() == $( ".reclave" ).val()){          
+         }else{
+            verificacion = verificacion.concat("\n * NO COINCIDE LA CLAVE");         
+         }
+         if($( "#nombre" ).val() == ""){
+            verificacion = verificacion.concat("\n * NOMBRE ES OBLIGATORIO");         
+         }
+         if($( "#apellido" ).val() == ""){
+            verificacion = verificacion.concat("\n * APELLIDO ES OBLIGATORIO");         
+         }
+
+        if($( "#cedula" ).val() == ""){
+            verificacion = verificacion.concat("\n * CEDULA ES OBLIGATORIO");         
+         }
+         if($( "#nacimiento" ).val() == ""){
+            verificacion = verificacion.concat("\n * FECHA DE NACIMIENTO ES OBLIGATORIO");         
+         }
+         if($( ".clave" ).val() == ""){
+            verificacion = verificacion.concat("\n * CLAVE ES OBLIGATORIO");         
+         }
+         if($( ".reclave" ).val() == ""){
+            verificacion = verificacion.concat("\n * CONFIRME SU CLAVE");         
+         }
+         if($( "#ocupacion" ).val() == ""){
+            verificacion = verificacion.concat("\n * OCUPACION ES OBLIGATORIO");         
+         }
+         if($( "#nacionalidad" ).val() == ""){
+            verificacion = verificacion.concat("\n * NACIONALIDAD ES OBLIGATORIO");         
+         }
+         if($( "#correo" ).val() == ""){
+            verificacion = verificacion.concat("\n * DIRECCION ES OBLIGATORIO");         
+         }
+         if($( "#direccion" ).val() == ""){
+            verificacion = verificacion.concat("\n * DIRECCION ES OBLIGATORIO");         
+         }
+          if($( "#pais" ).val() == ""){
+            verificacion = verificacion.concat("\n * PAIS ES OBLIGATORIO");         
+         }
+         if($( "#estado" ).val() == ""){
+            verificacion = verificacion.concat("\n * ESTADO ES OBLIGATORIO");         
+         }
+         if($( "#bancos" ).val() == ""){
+            verificacion = verificacion.concat("\n * ESTADO ES OBLIGATORIO");         
+         }
+         if($( "#tipocuenta" ).val() == ""){
+            verificacion = verificacion.concat("\n * ESTADO ES OBLIGATORIO");         
+         }
+         if($( "#ncuenta" ).val() == ""){
+            verificacion = verificacion.concat("\n * ESTADO ES OBLIGATORIO");         
+         }
+         if($( "#bancotransferencia" ).val() == ""){
+            verificacion = verificacion.concat("\n * ESTADO ES OBLIGATORIO");         
+         }
+         if($( "#numref" ).val() == ""){
+            verificacion = verificacion.concat("\n * ESTADO ES OBLIGATORIO");         
+         }
+         if($( "#fechatransferencia" ).val() == ""){
+            verificacion = verificacion.concat("\n * ESTADO ES OBLIGATORIO");         
+         }
+         if($( "#montotrans" ).val() == ""){
+            verificacion = verificacion.concat("\n * ESTADO ES OBLIGATORIO");         
+         }
+         if($( "#cedulared" ).val() == ""){
+            verificacion = verificacion.concat("\n * CEDULA DEL AUSPICIADOR ES OBLIGATORIO");         
+         }
+         if(verificacion !== ""){
+          alert(verificacion);
+          return false;
+         }
+
+         /* var v = grecaptcha.getResponse();
+          if(v.length == 0)
+          {
+          alert("Verifica el captcha");
+              return false;
+          }*/
+          
+$('#fotocargando').show();
+        $.post( "{{path('registrar_miembros')}}", { nombre: $( "#nombre" ).val(), apellidos: $( "#apellidos" ).val(), cedula: $( "#cedula" ).val(), nacimiento: $( "#nacimiento" ).val(), profesion: $( "#profesion" ).val(), ocupacion: $( "#ocupacion" ).val(), nacionalidad: $( "#nacionalidad" ).val(), correo: $( "#correo" ).val(), direccion: $( "#direccion" ).val(), ciudad: $( "#ciudad" ).val(), estado: $( "#estado" ).val(), bancos: $( "#bancos" ).val(), tipocuenta: $( "#tipocuenta" ).val(), ncuenta: $( "#ncuenta" ).val(), pais: $( "#pais" ).val(), cedulared: $( "#cedulared" ).val(), nombrered: $( "#nombrered" ).val(), bancored: $( "#bancotransferencia" ).val(), nreferencia: $( "#numref" ).val(), fechared: $( "#fechatransferencia" ).val(), monto: $( "#montotrans" ).val(), apellidored: $( "#apellidored" ).val(),clave:$( ".clave" ).val(), username:$( "#username" ).val(), rif:$( "#rif" ).val(), telefono:$( "#telefono" ).val()})
+
+
+          .done(function( data ) {
+            $('#fotocargando').hide();
+            $("#loginForm")[0].reset();
+            var planilla = data[0]['idplanilla'];
+           /* alert(planilla);*/
+             window.open("planilla/"+planilla);
+             $(".close").click();
+            // location.reload();
+
+
+          });
+
+
+       
+      });
+
+
+    $("#cedulared" ).bind("keyup change", function(e) {
+
+ $('#registrar').hide();
+   $('#fotocedulared').show();
+
+
+    $.post( "{{path('buscar_cedula')}}", { cedulared: $(this).val() }).done(function( data ) {
+             
+              if(data.length>0){                
+                  $("#nombrered").val(data[0]['nombre']);
+                  $("#apellidored").val(data[0]['apellido']);
+                  $('#registrar').show();
+                   $('#registrar').prop('disabled',false);
+                      $('#fotocedulared').hide();
+
+              }else{
+                /*alert("ESTE REGISTRO NO EXISTE");*/
+                $('#registrar').hide();
+                $("#nombrered").val('');
+                 $("#apellidored").val('');
+                   $('#registrar').prop('disabled',true);
+                                         $('#fotocedulared').hide();
+
+              }
+
+              
+          });
+})
+
+
+ $("#username" ).bind("change", function(e) {
+    $.post( "{{path('buscar_username')}}", { username: $(this).val() }).done(function( data ) {
+              if(data == true){
+                $(this).focus();
+                alert("USERNAME YA SE ENCUENTRA REGISTRADO");
+                $("#loginForm")[0].reset();
+                return false;
+              }
+          });
+})
+ $("#cedula").bind("change", function(e) {
+     $.post( "{{path('buscar_cedulamaster')}}", { cedula: $(this).val() }).done(function( data ) {
+              if(data == true){
+                $(this).focus();
+                alert("CEDULA YA SE ENCUENTRA REGISTRADA");
+                $("#loginForm")[0].reset();
+                return false;
+              }
+          });
+})
+    </script>
+
+  </body>
+
+</html>

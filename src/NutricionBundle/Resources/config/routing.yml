@@ -1,0 +1,72 @@
+nutricion_volumenes:
+    resource: "@NutricionBundle/Resources/config/routing/volumenes.yml"
+    prefix:   /volumen
+nutricion_periodocierre:
+    resource: "@NutricionBundle/Resources/config/routing/periodocierre.yml"
+    prefix:   /periodocierres
+nutricion_homepage:
+    path:     /
+    defaults: { _controller: NutricionBundle:Default:index }
+registrar_miembros:
+    path:     /registrardatos
+    defaults: { _controller: NutricionBundle:Default:registro }
+buscar_cedula:
+    path:     /buscardatos
+    defaults: { _controller: NutricionBundle:Default:buscarred } 
+buscar_cedulamaster:
+    path:     /buscarmaster
+    defaults: { _controller: NutricionBundle:Default:buscarmaster }
+buscar_username:
+    path:     /buscarusername
+    defaults: { _controller: NutricionBundle:Default:buscarusername }
+buscarhistorial:
+    path:     /historial
+    defaults: { _controller: NutricionBundle:Default:buscarhistorial }
+historial:
+    path:     /historico/{id}
+    defaults: { _controller: NutricionBundle:Volumenes:hist }
+reportenutricell:
+    path:     /planilla/{id}
+    defaults: { _controller: NutricionBundle:Default:reporte }
+admin:
+    path:     /admin
+    defaults: { _controller: NutricionBundle:Default:admin }
+table:
+    path:     /data
+    defaults: { _controller: NutricionBundle:Default:table }
+documento:
+    path:     /documento
+    defaults: { _controller: NutricionBundle:Default:documento }
+vp:
+    path:     /vp/{id}
+    defaults: { _controller: NutricionBundle:Volumenes:new }
+arbol:
+    path:     /arbol/{id}
+    defaults: { _controller: NutricionBundle:Default:arbol }
+miperfil:
+    path:     /nutricell/{id}
+    defaults: { _controller: NutricionBundle:Default:perfil }
+cerrar:
+    path:     /logout
+    defaults: { _controller: NutricionBundle:Default:logout }
+galeria_admin_mini:
+    path:     /mini/{id}
+    defaults: { _controller: NutricionBundle:Default:mini }
+diferencial:
+    path:     /diferencial/{id}
+    defaults: { _controller: NutricionBundle:Default:diferencial }
+residual:
+    path:     /residual/{id}
+    defaults: { _controller: NutricionBundle:Default:residual }
+informeplanilla:
+    path:     /documentoplanilla/{id}
+    defaults: { _controller: NutricionBundle:Default:planilla }
+eliminar:
+    path:     /borrardatos/{cedula}
+    defaults: { _controller: NutricionBundle:Default:eliminar }
+periodo:
+    path:     /periodo
+    defaults: { _controller: NutricionBundle:Default:periodo }
+login:
+    path:     /login
+    defaults: { _controller: NutricionBundle:Default:login }

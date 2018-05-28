@@ -1,0 +1,115 @@
+<?php
+
+namespace NutricionBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Bancos
+ *
+ * @ORM\Table(name="bancos")
+ * @ORM\Entity(repositoryClass="NutricionBundle\Repository\BancosRepository")
+ */
+class Bancos
+{
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Planilla", mappedBy="bancos")
+     */
+    protected $planilla;
+ 
+    public function __construct()
+    {
+        $this->planilla = new ArrayCollection();
+    }
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombres", type="string", length=255)
+     */
+    private $nombres;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombres
+     *
+     * @param string $nombres
+     *
+     * @return Bancos
+     */
+    public function setNombres($nombres)
+    {
+        $this->nombres = $nombres;
+
+        return $this;
+    }
+
+    /**
+     * Get nombres
+     *
+     * @return string
+     */
+    public function getNombres()
+    {
+        return $this->nombres;
+    }
+     public function __toString()
+   {
+      return strval($this->getId());
+   }
+
+    /**
+     * Add planilla
+     *
+     * @param \NutricionBundle\Entity\Planilla $planilla
+     *
+     * @return Bancos
+     */
+    public function addPlanilla(\NutricionBundle\Entity\Planilla $planilla)
+    {
+        $this->planilla[] = $planilla;
+
+        return $this;
+    }
+
+    /**
+     * Remove planilla
+     *
+     * @param \NutricionBundle\Entity\Planilla $planilla
+     */
+    public function removePlanilla(\NutricionBundle\Entity\Planilla $planilla)
+    {
+        $this->planilla->removeElement($planilla);
+    }
+
+    /**
+     * Get planilla
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlanilla()
+    {
+        return $this->planilla;
+    }
+}

@@ -1,0 +1,216 @@
+{% extends 'template.html.twig' %}
+{% block body %}
+
+
+     <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+
+      <div class="row presentacionimg">
+      {% for flashMenssage in app.session.flashbag.get('fall') %}
+      <div class="col-lg-12 mx-auto">
+        <div class="alert alert-danger">
+          {{ flashMenssage  }}
+       </div>
+      </div>
+      {% endfor %}
+      <div class="col-lg-12 mx-auto">
+          {#<h4 id="textopresentacion">PINA GRAPEFRUIT</h4>#}
+          
+          </div>        
+          <div class="col-lg-12 mx-auto imagen1">
+
+              <div class="col-lg-2" style="margin-top:-12em"><img src="{{ asset('img/pildora.gif') }}" ></div>
+          
+          </div>        
+          {#<div class="col-lg-6 mx-auto imagen2">
+          
+          </div>        #}
+      </div>
+    
+   {#   <div class="row">
+      <div class="col-lg-4 mx-auto">
+       <h4 style="margin-bottom:1px;">Acceder Oficina</h4>
+  <form class="form-horizontal" role="form" method="post">
+  <div class="form-group">
+    
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="correo"
+             placeholder="Usuario" name="usuarios">
+    </div>
+  </div>
+  <div class="form-group">
+    
+    <div class="col-lg-10">
+      <input type="password" class="form-control" id="clave2" 
+             placeholder="Clave" name="clave">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-default">Entrar</button>
+    </div>
+  </div>
+</form>
+      </div>
+      <div class="col-lg-4 mx-auto">
+      <h4 >Conozca el mejor plan  de Negocio
+</h4>
+            <img src="{{ asset('img/negocio.png')}} "/>
+      </div>
+      <div class="col-lg-4 mx-auto imgvenezuela">
+          
+      </div>
+      </div>
+
+
+       
+      </div>
+      #}
+    </header>
+
+   
+
+    <section id="services" style="color:black;padding:2rem">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading" style="color:blue !important;font-weight: 900 !important">Nutricel</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+    <div class="col-lg-12 col-md-12 text-center" style="color:black !important;padding-bottom:40px;">
+    Es una empresa 100% Venezolana con sede propia que distribuye en forma exclusiva productos dedicados a la Salud y a la Educación Financiera
+    </div>
+          <div class="col-lg-6 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              {#<i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>#}
+              <h3 class="mb-3" style="color:blue !important;font-weight: 900 !important">Misión</h3>
+              <p class="text-muted mb-0" style="text-align:justify;color:black !important">Es brindar la oportunidad sin límites a todas aquellas personas con grandes deseos de superación, para que puedan  acceder a las tres llaves Nutricel: La Llave de la Salud, la Llave de la Prosperidad y la llave de la éxito, poniéndoles a su disposición productos de la más alta calidad y tecnología en la Nutrición Celular de Venezuela y el Mundo, a través del mejor plan de la industria del Network Marketing o Mercadeo en Red, brindándoles a nuestros afiliados  la oportunidad y garantía económica con la plena satisfacción mediante el consumo de nuestros productos.
+</p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              {#<i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>#}
+              <h3 class="mb-3" style="color:blue !important; font-weight: 900 !important" >Visión</h3>
+              <p class="text-muted mb-0" style="text-align:justify;color:black !important">Con el más elevado código de ética para proteger los derechos e intereses de nuestro Equipo de trabajo, proporcionaremos a nuestros afiliados la oportunidad de Negocio NUTRICEL, independientemente de su raza, religión, credo político, antecedentes educacionales o de negocios, así es como difundiremos el concepto del cuidado de la Nutrición Celular “NUTRICEL” y su excepcional negocio en todos los rincones de la tierra, logrando así bienestar para la humanidad.
+</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="p-0" id="portfolio">
+      <div class="container-fluid p-0" style="">
+        <div class="row no-gutters popup-gallery">
+          
+          <div class="col-lg-6 col-sm-6 col-lg-offset-4">
+           {# <a class="portfolio-box" href="{{ asset('img/bioplus.png') }}">
+              <img class="img-fluid" src="{{ asset('img/bioplus.png') }}" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    NUTRICELL
+                  </div>
+                  <div class="project-name">
+                    Bioplus
+                  </div>
+                </div>
+              </div>
+            </a>#}
+  <div class="service-box mt-5 mx-auto">
+
+   <h3 class="mb-3" style="color:red !important; font-weight: 900 !important; text-align:center;" >4 X BIO PLUS</h3>
+  <p class="text-muted mb-0" style="text-align:justify;color:black !important"><img class="img-fluid" src="{{ asset('img/bioplus.png') }}" alt="" align="left">
+
+  <h5 class="mb-3" style="color:red !important; font-weight: 900 !important;text-align:center;" >Contiene</h5>
+
+  <p class="text-align:left !important;"><span style="color:red;font-weight: 900">MACA:</span> Poderoso energizante y estimulante del sistema nervioso. </p>
+  <p><span style="color:red;font-weight: 900">GINSENG:</span> Mejora el sistema inmune y retarda el envejecimiento. </p>
+  <p><span style="color:red;font-weight: 900">DAMIANA:</span> Elimina el agotamiento, la ansiedad y la debilidad física.</p>
+  <p><span style="color:red;font-weight: 900">POLEN:</span> Aumenta la resistencia física y reduce el estrés.</p>
+
+</p>
+
+</div>            
+          </div>
+          <div class="col-lg-6 col-sm-6">
+           <div class="service-box mt-5 mx-auto">
+
+           <img class="img-fluid" src="{{ asset('img/educacion.png') }}" alt="" align="center">
+           <h3 class="mb-3" style="color:red !important; font-weight: 900 !important" >Sistema de Capacitación Continua</h3>
+              <p class="text-muted mb-0" style="text-align:justify;color:black !important">
+              Este producto está compuesto por actividades y programas de   aprendizaje de forma teórica por medio de Seminarios, Talleres, Libro, Crecimiento Personal, Audios y Conferencias en Vivo. 
+Es un sistema totalmente creado para aquellas personas con deseos de Superación Personal, Emocional, en áreas de Salud, Estudios Financieros, Cultural entre otros.
+</p>
+           </div>
+          </div>
+          
+          
+          
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="plan" style="padding:5rem 0;">
+      <div class="container text-center">
+
+      <div class="row">
+      <div class="col-lg-12">
+         <img class="img-fluid" src="{{ asset('img/laptos.png') }}" alt="" align="center">
+      </div>
+
+      <div class="col-lg-6">
+            <a class="btn btn-danger" href="#">Descargar Presentación</a>
+      </div>
+      <div class="col-lg-6">
+            <a class="btn btn-danger" href="#">Descargar VIDEO</a>
+      </div>
+      </div>
+      </div>
+    </section>
+
+    <section id="oficina" style="padding:2rem 0;">
+      <div class="container">
+       
+             
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.0989912376513!2d-67.60225848543293!3d10.253599692677602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e803c9e08ad7651%3A0xc117a61016996ef9!2sTorre+Cosmopolitan!5e0!3m2!1ses-419!2sve!4v1516924154727" width="600" height="450" style="border:0;width:121.6%;margin-left:-8%;"  frameborder="0" style="border:0" allowfullscreen></iframe>
+                  
+ <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Direccion</h2>
+            <hr class="my-4">
+            <p class="mb-5">Dirección de la Oficina: Av. 19 de Abril, Torre Cosmopolitan nivel PB. Maracay. Estado Aragua</p>
+          </div>
+        </div>
+        <div class="row">
+         <div class="col-lg-12">
+  
+        </div>
+          <div class="col-lg-12 ml-auto text-center">
+            <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+            <p>0243-247.29.87 / 0412-346.19.64 </p>
+          </div>
+      
+        </div>
+      </div>
+    </section>
+
+
+    <section id="contacto" style="padding:2rem 0;">
+      <div class="container">
+          <div class="col-lg-12 redes">
+          </div>
+
+       
+      </div>
+    </section>
+
+{% endblock %}

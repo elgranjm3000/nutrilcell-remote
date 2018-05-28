@@ -1,0 +1,28 @@
+volumenes_index:
+    path:     /
+    defaults: { _controller: "NutricionBundle:Volumenes:index" }
+    methods:  GET
+
+volumenes_show:
+    path:     /{id}/show
+    defaults: { _controller: "NutricionBundle:Volumenes:show" }
+    methods:  GET
+
+volumenes_new:
+    path:     /new
+    defaults: { _controller: "NutricionBundle:Volumenes:new" }
+    methods:  [GET, POST]
+
+volumenes_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NutricionBundle:Volumenes:edit" }
+    methods:  [GET, POST]
+
+volumenes_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NutricionBundle:Volumenes:delete" }
+    methods:  DELETE
+
+volumenes_eliminar:
+    path:     /{idvolumene}/{idafiliado}/eliminar
+    defaults: { _controller: "NutricionBundle:Volumenes:eliminar" }

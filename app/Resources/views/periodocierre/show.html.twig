@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Periodocierre</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ periodocierre.id }}</td>
+            </tr>
+            <tr>
+                <th>Fechadesde</th>
+                <td>{% if periodocierre.fechadesde %}{{ periodocierre.fechadesde|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechahasta</th>
+                <td>{% if periodocierre.fechahasta %}{{ periodocierre.fechahasta|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('periodocierre_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('periodocierre_edit', { 'id': periodocierre.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

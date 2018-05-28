@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Sistema Administrativo NUTRICEL</title>
+  <!-- Bootstrap core CSS-->
+
+  <link href="{{ asset('templatenew/vendor2/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- Custom fonts for this template-->
+  <link href="{{ asset('templatenew/vendor2/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+
+  <link href="{{ asset('templatenew/css/sb-admin.css') }}" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {% block stylesheets %}
+ {% endblock %}
+  {% block head_javascripts %}
+ {% endblock %}
+ <style>
+ /*  .navbar-collapse.collapse{
+    display:flex !important;
+   }
+   body.fixed-nav{
+    padding-top:20px;
+   }*/
+
+.active a{
+  z-index: 2;
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+
+.paginate_button a{
+      position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+
+ </style>
+
+ {% block scripersonalarbol1 %}
+    {% endblock %}   
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top" onload="prettyPrint();">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="index.html">NutriCel</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+
+      {% if (app.session.get('tipouser') == 'A') %}
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="{{ path('table') }}">
+            <i class="fa fa-users"></i>
+            <span class="nav-link-text">Afiliados</span>
+          </a>
+        </li>
+      {% endif %}
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+          <a class="nav-link" href="{{path('miperfil', { 'id': app.session.get('idmasterprincipal') })}}">
+            <i class="fa fa-user"></i>
+            <span class="nav-link-text">Mi Perfil</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="{{path('arbol', { 'id': app.session.get('idmasterprincipal') })}}">
+            <i class="fa fa-sitemap"></i>
+            <span class="nav-link-text">Mi Arbol Genealógico</span>
+          </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="{{path('diferencial', { 'id': app.session.get('idmasterprincipal') })}}">
+            <i class="fa fa-money"></i>
+            <span class="nav-link-text">Calculo de Comisión</span>
+          </a>
+        </li>
+
+         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="{{ path('documento') }}">
+            <i class="fa fa-file"></i>
+            <span class="nav-link-text">Planilla por Afiliado</span> 
+          </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="{{ path('buscarhistorial') }}">
+            <i class="fa fa-calendar"></i>
+            <span class="nav-link-text">Historial por Mes</span>
+          </a>
+        </li>
+
+
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="{{ path('periodo')}}">
+            <i class="fa fa-calendar-o"></i>
+            <span class="nav-link-text">Periodo de Cierre</span>
+          </a>
+        </li>
+          
+      {#<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="{{path('residual', { 'id': app.session.get('idmasterprincipal') })}}">
+            <i class="fa fa-money"></i>
+            <span class="nav-link-text">Pago Residual</span>
+          </a>
+        </li>#}
+       
+      
+        
+       
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">       
+        
+      
+        <li class="nav-item">
+          <a href="{{ path('cerrar')}}" class="nav-link">
+            <i class="fa fa-fw fa-sign-out"></i>Cerrar Session</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+    
+      <div class="row">
+        <div class="col-12">
+          {% block body %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Your Website 2017</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <!--<script src="{{ asset('templatenew/vendor2/jquery/jquery.min.js') }}"></script>-->
+    <script src="{{ asset('templatenew/vendor2/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('templatenew/vendor2/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('templatenew/js/sb-admin.min.js') }}"></script>
+
+ <script>
+
+
+
+
+
+
+    $(document).ready(function () {
+
+  $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+
+
+         $("#sg-datatables-planilla_datatable").addClass("table");
+        $("#sg-datatables-planilla_datatable").addClass("table-bordered");
+
+
+        
+
+
+    $("#nutricionbundle_volumenes_monto").change(function(){
+          var pv = $(this).val()/2000;
+          
+          $("#nutricionbundle_volumenes_pv").val(parseInt(pv));
+});
+
+
+});
+
+
+
+    $.fn.extend({
+    treed: function (o) {
+      
+      var openedClass = 'fa fa-minus';
+      var closedClass = 'fa fa-plus';
+      
+      if (typeof o != 'undefined'){
+        if (typeof o.openedClass != 'undefined'){
+        openedClass = o.openedClass;
+        }
+        if (typeof o.closedClass != 'undefined'){
+        closedClass = o.closedClass;
+        }
+      };
+      
+        //initialize each of the top levels
+        var tree = $(this);
+        tree.addClass("tree");
+        tree.find('li').has("ul").each(function () {
+            var branch = $(this); //li with children ul
+            branch.prepend("<i class='indicator glyphicon " + closedClass + "'></i>");
+            branch.addClass('branch');
+            branch.on('click', function (e) {
+                if (this == e.target) {
+                    var icon = $(this).children('i:first');
+                    icon.toggleClass(openedClass + " " + closedClass);
+                    $(this).children().children().toggle();
+                }
+            })
+            branch.children().children().toggle();
+        });
+        //fire event from the dynamically added icon
+      tree.find('.branch .indicator').each(function(){
+        $(this).on('click', function () {
+            $(this).closest('li').click();
+        });
+      });
+        //fire event to open branch if the li contains an anchor instead of text
+        tree.find('.branch>a').each(function () {
+            $(this).on('click', function (e) {
+                $(this).closest('li').click();
+                e.preventDefault();
+            });
+        });
+        //fire event to open branch if the li contains a button instead of text
+        tree.find('.branch>button').each(function () {
+            $(this).on('click', function (e) {
+                $(this).closest('li').click();
+                e.preventDefault();
+            });
+        });
+    }
+});
+
+//Initialization of treeviews
+
+$('#tree1').treed();
+        </script>   
+
+    
+  </div>
+
+   {% block scripersonalarbol2 %}
+    {% endblock %}   
+</body>
+
+</html>

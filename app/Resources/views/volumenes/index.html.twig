@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Volumenes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idafiliado</th>
+                <th>Monto</th>
+                <th>Pv</th>
+                <th>Fecha</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for volumene in volumenes %}
+            <tr>
+                <td><a href="{{ path('volumenes_show', { 'id': volumene.id }) }}">{{ volumene.id }}</a></td>
+                <td>{{ volumene.idafiliado }}</td>
+                <td>{{ volumene.monto }}</td>
+                <td>{{ volumene.pv }}</td>
+                <td>{% if volumene.fecha %}{{ volumene.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('volumenes_show', { 'id': volumene.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('volumenes_edit', { 'id': volumene.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('volumenes_new') }}">Create a new volumene</a>
+        </li>
+    </ul>
+{% endblock %}

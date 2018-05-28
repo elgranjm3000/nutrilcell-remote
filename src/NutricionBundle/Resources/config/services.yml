@@ -1,0 +1,19 @@
+services:
+#    nutricion.example:
+#        class: NutricionBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    app.datatable.post:
+        class: NutricionBundle\Datatables\PlanillaDatatable
+        parent: sg_datatables.datatable.abstract 
+    historial.datatable.post:
+        class: NutricionBundle\Datatables\HistorialDatatable
+        parent: sg_datatables.datatable.abstract 
+    documento.datatable.post:
+        class: NutricionBundle\Datatables\DocumentoDatatable
+        parent: sg_datatables.datatable.abstract   
+    acme.twig.acme_extension:
+        class: NutricionBundle\DependencyInjection\FunctionsExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments:  [ '@doctrine' ]

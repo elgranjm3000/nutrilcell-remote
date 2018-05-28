@@ -1,0 +1,169 @@
+{% extends 'blank.html.twig' %}
+
+{% block stylesheets %}
+   
+       <link rel="stylesheet" href="{{ asset('templatenew/vendor/datatables/dataTables.bootstrap4.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/noelboss/featherlight/1.7.1/release/featherlight.min.css">
+
+    <link rel="stylesheet" href="{{ asset('css/jquery.jOrgChart.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
+    <link href="{{ asset('css/prettify.css') }}" type="text/css" rel="stylesheet" /> 
+<style type="text/css">
+        .jOrgChart .node{
+                    width: 150px !important;
+                    height: 80px !important;
+        }
+        .container-fluid{
+                overflow-x: scroll !important;
+
+        }
+        footer.sticky-footer{
+            display: none;
+        }
+
+</style>
+{% endblock %}
+{% block head_javascripts %}
+        
+             <script type="text/javascript" src="{{ asset('js/prettify.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment-with-locales.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js" charset="UTF-8"></script>
+        <script src="https://cdn.datatables.net/v/bs/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/r-2.1.0/datatables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+        <script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.1/release/featherlight.min.js"></script>
+        <script src="{{ asset('bundles/sgdatatables/js/pipeline.js') }}"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>    
+
+
+           <script src="{{ asset('js/jquery.jOrgChart.js') }}"></script>
+        
+{% endblock %}
+    
+
+
+
+{% block body %}
+
+
+{% for flashMenssage in app.session.flashbag.get('add') %}
+<div class="alert alert-success">
+        {{ flashMenssage  }}
+</div>
+{% endfor %}
+{% for flashMenssage in app.session.flashbag.get('edit') %}
+<div class="alert alert-info">
+        {{ flashMenssage  }}
+</div>
+{% endfor %}
+
+{% for flashMenssage in app.session.flashbag.get('fall') %}
+<div class="alert alert-danger">
+        {{ flashMenssage  }}
+</div>
+{% endfor %}
+
+
+
+{% macro menu_links(links,valor) %}
+    {% import _self as macros %}
+
+<ul>
+    {% for link in links %}
+     {% if link.cedulared == valor %}
+            <li>
+              
+            <a href="{{ path('arbol', { 'id': link.id }) }}">
+            </span>{{ link.nombre }} {{ link.apellido }}</a> 
+        <p>PV: {{ link.id|price }}</p>
+        <p>Punto Grupal: {{ link.cedula|grupal }}</p>
+        {{ macros.menu_links(links,link.cedula) }}
+   
+         
+            </li>
+         
+     {% endif %}
+
+    {% endfor %}
+</ul>    
+{% endmacro %}
+
+
+
+
+
+
+{% import _self as macros %}
+
+
+        
+
+ <ul id="org" style="display:none">
+    <li>
+    
+       {{nombremaster}} {{apellidomaster}}
+
+      
+       <br>   
+        <p>PV: {{ idmaster|price }}</p>
+        <p>Punto Grupal: {{ cedularedmaster|grupal }}</p>
+       <ul>
+       {% for entity in master %}
+                        <li class="collapase">   
+                                {{ entity.nombre }} {{ entity.apellido }} 
+                                <p>PV: {{ entity.id|price }}</p>
+                                <p>Punto Grupal: {{ entity.cedula|grupal }}</p>
+                                {{ macros.menu_links(redes,entity.cedula) }}     
+                        </li>
+         {% endfor %} 
+       </ul>
+     </li>
+</ul>            
+    
+    <div id="chart" class="orgChart"></div>
+{% endblock %}
+
+
+{% block scripersonalarbol1 %}
+<script>
+    jQuery(document).ready(function() {
+        $("#org").jOrgChart({
+            chartElement : '#chart',
+            dragAndDrop  : true
+        });
+    });
+    </script>
+{% endblock %}   
+{% block scripersonalarbol2 %}
+<script>
+        jQuery(document).ready(function() {
+            
+            /* Custom jQuery for the example */
+            $("#show-list").click(function(e){
+                e.preventDefault();
+                
+                $('#list-html').toggle('fast', function(){
+                    if($(this).is(':visible')){
+                        $('#show-list').text('Hide underlying list.');
+                        $(".topbar").fadeTo('fast',0.9);
+                    }else{
+                        $('#show-list').text('Show underlying list.');
+                        $(".topbar").fadeTo('fast',1);                  
+                    }
+                });
+            });
+            
+            $('#list-html').text($('#org').html());
+            
+            $("#org").bind("DOMSubtreeModified", function() {
+                $('#list-html').text('');
+                
+                $('#list-html').text($('#org').html());
+                
+                prettyPrint();                
+            });
+        });
+    </script>
+{% endblock %}   

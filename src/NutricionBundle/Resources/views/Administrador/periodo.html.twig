@@ -1,0 +1,141 @@
+{% extends 'blank.html.twig' %}
+
+{% block stylesheets %}
+   
+        <link rel="stylesheet" href="{{ asset('templatenew/vendor/datatables/dataTables.bootstrap4.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/noelboss/featherlight/1.7.1/release/featherlight.min.css">
+        <style type="text/css">
+        .list-unstyled{
+                background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: 100;
+    text-align: center;
+        }
+        </style>
+{% endblock %}
+{% block head_javascripts %}
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment-with-locales.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js" charset="UTF-8"></script>
+        <script src="https://cdn.datatables.net/v/bs/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/r-2.1.0/datatables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+        <script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.1/release/featherlight.min.js"></script>
+        <script src="{{ asset('bundles/sgdatatables/js/pipeline.js') }}"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>    
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+
+        
+{% endblock %}
+    
+
+
+
+{% block body %}
+
+
+{% for flashMenssage in app.session.flashbag.get('add') %}
+<div class="alert alert-success">
+	{{ flashMenssage  }}
+</div>
+{% endfor %}
+{% for flashMenssage in app.session.flashbag.get('edit') %}
+<div class="alert alert-info">
+	{{ flashMenssage  }}
+</div>
+{% endfor %}
+
+{% for flashMenssage in app.session.flashbag.get('fall') %}
+<div class="alert alert-danger">
+	{{ flashMenssage  }}
+</div>
+{% endfor %}
+
+<h1>Cierre de Mes</h1>
+
+
+
+<hr>
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate','enctype':"multipart/form-data" ,'id':"uploadForm"}}) }}
+<div class="container">
+<div class="row">
+
+
+ <div class="col-md-6">
+
+ {{ form_row(form.fechadesde,{'label':'Desde','attr': {'class': 'form-control'} } ) }}
+ 
+</div>
+<div class="col-md-6">
+ {{ form_row(form.fechahasta,{'label':'Hasta','attr': {'class': 'form-control'} } ) }}
+
+  {{ form_widget(form) }}
+  
+   <button type="button"  id="cierre" class="btn btn-primary">Nuevo Periodo de cierre</button>
+         
+ 
+</div>
+
+<div class="col-md-12">
+
+</div>
+
+
+</div>
+
+
+</div>
+<br>
+
+{{ form_end(form) }}
+ 
+
+{% endblock %}
+
+
+   {% block scripersonalarbol2 %}
+   <script>
+    $(document).ready(function(){
+            $("#cierre").click(function(otro){
+                
+               $.confirm({
+    title: '¿ATENCION ESTAS SEGURO QUE DESEA REALIZAR EL CIERRE?',
+    content: ' Coloque ACEPTAR Para Continuar    O CANCELAR Para Salir',
+    type: 'green',
+    buttons: {   
+        ok: {
+            text: "ACEPTAR",
+            btnClass: 'btn-primary',
+            keys: ['enter'],
+            action: function(){
+                 $('#uploadForm').submit();
+            }
+        },
+        cancel: {
+            text:"CANCELAR",
+            btnClass: 'btn-danger',
+        action: function(){
+            
+                console.log('the user clicked cancel');
+        }
+        }
+    }
+});
+
+
+
+
+            });
+        })    
+    </script>
+   </script>
+
+    {% endblock %}
+ 

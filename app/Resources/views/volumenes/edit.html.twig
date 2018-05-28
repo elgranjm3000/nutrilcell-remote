@@ -1,0 +1,21 @@
+{% extends 'blank.html.twig' %}
+{% block body %}
+    <h1>Editar Factura</h1>
+
+        {{ form_start(edit_form, { 'attr': {'role': 'form','novalidate':'novalidate', 'enctype':'multipart/form-data'} } ) }}
+        
+ 
+ {{ form_row(edit_form.monto,{'label':'Monto','attr': {'class': 'form-control','placeholder':'Escriba el Monto de Compras', 'data-toggle': 'tooltip', 'data-placement':'top' , 'title': 'Ingrese Monto'} } ) }}
+
+ {{ form_row(edit_form.pv,{'label':'Punto de Volumenes','attr': {'class': 'form-control ocultarpv','placeholder':'00', 'data-toggle': 'tooltip', 'data-placement':'top' ,'readonly':'readonly' } } ) }}
+
+  {{ form_row(edit_form.fecha,{'label':'Fecha de Apertura','attr': {'class': 'form-control','placeholder':'Escriba el nombre del articulo', 'data-toggle': 'tooltip', 'data-placement':'top' , 'readonly':'readonly' } } ) }}
+
+        <input type="submit" value="Modificar" />
+    {{ form_end(edit_form) }}
+
+
+      
+
+
+{% endblock %}

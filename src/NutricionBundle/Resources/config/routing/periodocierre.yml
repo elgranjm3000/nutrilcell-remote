@@ -1,0 +1,24 @@
+periodocierre_index:
+    path:     /
+    defaults: { _controller: "NutricionBundle:Periodocierre:index" }
+    methods:  GET
+
+periodocierre_show:
+    path:     /{id}/show
+    defaults: { _controller: "NutricionBundle:Periodocierre:show" }
+    methods:  GET
+
+periodocierre_new:
+    path:     /new
+    defaults: { _controller: "NutricionBundle:Periodocierre:new" }
+    methods:  [GET, POST]
+
+periodocierre_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NutricionBundle:Periodocierre:edit" }
+    methods:  [GET, POST]
+
+periodocierre_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NutricionBundle:Periodocierre:delete" }
+    methods:  DELETE

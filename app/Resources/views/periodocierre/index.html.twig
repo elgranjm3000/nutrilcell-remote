@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Periodocierres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fechadesde</th>
+                <th>Fechahasta</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for periodocierre in periodocierres %}
+            <tr>
+                <td><a href="{{ path('periodocierre_show', { 'id': periodocierre.id }) }}">{{ periodocierre.id }}</a></td>
+                <td>{% if periodocierre.fechadesde %}{{ periodocierre.fechadesde|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if periodocierre.fechahasta %}{{ periodocierre.fechahasta|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('periodocierre_show', { 'id': periodocierre.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('periodocierre_edit', { 'id': periodocierre.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('periodocierre_new') }}">Create a new periodocierre</a>
+        </li>
+    </ul>
+{% endblock %}

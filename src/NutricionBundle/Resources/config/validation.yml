@@ -1,0 +1,22 @@
+NutricionBundle\Entity\Planilla:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: cedula
+            message: "NUMERO DE CEDULA YA EXISTE"
+    properties:
+        nombre:
+            - NotBlank: { message: "REQUERIDO" }
+        cedula:
+            - NotBlank: { message: "REQUERIDO" }
+        apellido:
+            - NotBlank: { message: "REQUERIDO" }
+        clave:
+            - NotBlank: { message: "REQUERIDO" }
+        banco:
+            - NotBlank: { message: "REQUERIDO" }
+        ncuenta:
+            - NotBlank: { message: "REQUERIDO" }          
+        correo:
+            - Email:
+                message: EL correo "{{ value }}" no es valido.
+                checkMX: true
